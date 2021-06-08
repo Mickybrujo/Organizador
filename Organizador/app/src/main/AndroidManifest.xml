@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cdp.organizador">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.cdp.organizador.NuevoActivity"
+            android:parentActivityName="com.cdp.organizador.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cdp.organizador.MainActivity" />
+        </activity>
+        <activity android:name="com.cdp.organizador.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.cdp.organizador.VerActivity"
+            android:parentActivityName="com.cdp.organizador.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cdp.organizador.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="com.cdp.organizador.EditarActivity"
+            android:parentActivityName="com.cdp.organizador.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cdp.organizador.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>
