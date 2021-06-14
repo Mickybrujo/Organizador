@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
 import com.cdp.organizador.adaptadores.ListaTareasAdapter;
 import com.cdp.organizador.db.DbTareas;
@@ -34,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         ListaTareasAdapter adapter = new ListaTareasAdapter(dbTareas.mostrarTareas());
         listaTareas.setAdapter(adapter);
+
+
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu){

@@ -7,9 +7,11 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ public class NuevoActivity extends AppCompatActivity implements View.OnClickList
     private int a, m, d, h, n;
     EditText txtTitulo, txtDescripcion, txtFecha, txtHora;
     Button btnGuarda, btnFecha, btnHora;
+    Spinner recordatorio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,11 @@ public class NuevoActivity extends AppCompatActivity implements View.OnClickList
         btnHora.setOnClickListener(this);
         btnGuarda = findViewById(R.id.btnGuarda);
         btnGuarda.setOnClickListener(this);
+        recordatorio=findViewById(R.id.spinnerRecordatorio);
+
+        String[] opciones = {"10 Minutos antes", "1 Día antes", "Sin recordatorio"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, opciones);
+        recordatorio.setAdapter(adapter);
 
     }
 
