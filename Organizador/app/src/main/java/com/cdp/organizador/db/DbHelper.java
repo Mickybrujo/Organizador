@@ -11,6 +11,8 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NOMBRE = "organizador.db";
     public static final String TABLE_Tareas = "t_tareas";
+    public static final String TABLE_Clasificacion = "t_clasificacion";
+
 
     public DbHelper(@Nullable Context context) {
         super(context, DATABASE_NOMBRE, null, DATABASE_VERSION);
@@ -25,6 +27,11 @@ public class DbHelper extends SQLiteOpenHelper {
                 "descripcion TEXT NOT NULL,"+
                 "fecha TEXT NOT NULL,"+
                 "hora TEXT NOT NULL)");
+
+        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_Clasificacion + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nombre TEXT NOT NULL" +
+                ")");
     }
 
     @Override
