@@ -78,7 +78,7 @@ public class DbClasificacion extends DbHelper {
         if (cursorClasificacions.moveToFirst()) {
             Clasificacion = new Clasificacion();
             Clasificacion.setId(cursorClasificacions.getInt(0));
-
+            Clasificacion.setNombre(cursorClasificacions.getString(1));
         }
 
         cursorClasificacions.close();

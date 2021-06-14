@@ -9,55 +9,51 @@
 
     <TextView
         android:id="@+id/viewTitulo"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Titulo de la tarea"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/txtTitulo"
-        android:layout_width="198dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="10"
+        android:layout_marginTop="10dp"
         android:inputType="text"
         android:labelFor="@+id/viewNombre"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewTitulo" />
 
     <TextView
         android:id="@+id/viewDescripción"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="10dp"
         android:text="Descripción"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
     <EditText
         android:id="@+id/txtDescripcion"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textMultiLine|text"
         android:labelFor="@+id/viewTelefono"
         android:textSize="24sp"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewDescripción" />
 
-    <Button
-        android:id="@+id/btnGuarda"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Guardar"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerRecordatorio" />
+
 
     <EditText
         android:id="@+id/txtFecha"
@@ -107,31 +103,8 @@
         app:layout_constraintStart_toEndOf="@+id/btnFecha"
         app:layout_constraintTop_toBottomOf="@+id/txtHora" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/ic_edit"
-        app:layout_constraintEnd_toEndOf="@+id/btnGuarda"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuarda" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabEliminar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@drawable/ic_delete"
-        app:layout_constraintStart_toStartOf="@+id/fabEditar"
-        app:layout_constraintTop_toBottomOf="@+id/fabEditar" />
 
-    <Spinner
-        android:id="@+id/spinnerRecordatorio"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion"
-        tools:layout_editor_absoluteX="2dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -139,8 +112,50 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="Recordatorio"
-        app:layout_constraintTop_toBottomOf="@+id/btnFecha"
-        tools:layout_editor_absoluteX="28dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnFecha" />
+
+    <Spinner
+        android:id="@+id/spinnerRecordatorio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="196dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+
+
+    <Button
+        android:id="@+id/btnGuarda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Guardar"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerRecordatorio" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabEditar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/ic_edit"
+        android:layout_marginEnd="-10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGuarda" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clickable="true"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintStart_toStartOf="@+id/fabEditar"
+        app:layout_constraintTop_toBottomOf="@+id/fabEditar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@ public class DbTareas extends DbHelper {
         this.context = context;
     }
 
-    public long insertarTarea(String titulo, String descripcion, String fecha, String hora) {
+    public long insertarTarea(String titulo, String descripcion, String fecha, String hora, int clasificacionId) {
 
         long id = 0;
 
@@ -33,8 +33,7 @@ public class DbTareas extends DbHelper {
             values.put("descripcion", descripcion);
             values.put("fecha", fecha);
             values.put("hora", hora);
-            values.put("hora", hora);
-
+            values.put("id_categoria", clasificacionId);
             id = db.insert(TABLE_Tareas, null, values);
         } catch (Exception ex) {
             ex.toString();
@@ -53,6 +52,7 @@ public class DbTareas extends DbHelper {
         Cursor cursorTareas;
 
         cursorTareas = db.rawQuery("SELECT * FROM " + TABLE_Tareas, null);
+        DbClasificacion clasificacion = new DbClasificacion(this.context);
 
         if (cursorTareas.moveToFirst()) {
             do {
@@ -60,7 +60,7 @@ public class DbTareas extends DbHelper {
                 tarea.setId(cursorTareas.getInt(0));
                 tarea.setTitulo(cursorTareas.getString(1));
                 tarea.setDescripcion(cursorTareas.getString(2));
-
+                tarea.setClasificacion(clasificacion.verClasificacion(cursorTareas.getInt(5)));
                 listaTareas.add(tarea);
             } while (cursorTareas.moveToNext());
         }
@@ -79,6 +79,7 @@ public class DbTareas extends DbHelper {
         Cursor cursorTareas;
 
         cursorTareas = db.rawQuery("SELECT * FROM " + TABLE_Tareas + " WHERE id = " + id + " LIMIT 1", null);
+        DbClasificacion clasificacion = new DbClasificacion(this.context);
 
         if (cursorTareas.moveToFirst()) {
             tarea = new Tareas();
@@ -87,6 +88,7 @@ public class DbTareas extends DbHelper {
             tarea.setDescripcion(cursorTareas.getString(2));
             tarea.setFecha(cursorTareas.getString(3));
             tarea.setHora(cursorTareas.getString(4));
+            tarea.setClasificacion(clasificacion.verClasificacion(cursorTareas.getInt(5)));
         }
 
         cursorTareas.close();

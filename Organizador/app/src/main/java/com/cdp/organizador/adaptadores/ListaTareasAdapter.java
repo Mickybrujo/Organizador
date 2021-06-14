@@ -34,7 +34,7 @@ public class ListaTareasAdapter extends RecyclerView.Adapter<ListaTareasAdapter.
     @Override
     public void onBindViewHolder(@NonNull ContactoViewHolder holder, int position) {
         holder.viewTitulo.setText(listaTareas.get(position).getTitulo());
-        holder.viewDescripcion.setText(listaTareas.get(position).getDescripcion());
+        holder.viewDescripcion.setText(listaTareas.get(position).getDescripcion() + " - " + listaTareas.get(position).getClasificacion().getNombre());
     }
 
     @Override

@@ -18,7 +18,9 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.cdp.organizador.db.DbClasificacion;
 import com.cdp.organizador.db.DbTareas;
+import com.cdp.organizador.entidades.Clasificacion;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -29,13 +31,13 @@ public class NuevoActivity extends AppCompatActivity implements View.OnClickList
     private int a, m, d, h, n;
     EditText txtTitulo, txtDescripcion, txtFecha, txtHora;
     Button btnGuarda, btnFecha, btnHora;
-    Spinner recordatorio;
+    Spinner recordatorio, clasificacion;
     public Calendar c = Calendar.getInstance();
 
 
 
-    ArrayList<String> clasificacionesNombres = new ArrayList<String>();
-    ArrayList<String> IdStudent = new ArrayList<String>();
+    String [] clasificacionNombres = {};
+    int [] clasificacionIds = {};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +55,23 @@ public class NuevoActivity extends AppCompatActivity implements View.OnClickList
         btnGuarda = findViewById(R.id.btnGuarda);
         btnGuarda.setOnClickListener(this);
         recordatorio = findViewById(R.id.spinnerRecordatorio);
+        clasificacion = findViewById(R.id.spinnerClasificacion);
 
+        DbClasificacion db = new DbClasificacion(getApplicationContext());
+        ArrayList<Clasificacion> clasificaciones = db.mostrarClasificaciones();
+        clasificacionNombres = new String[clasificaciones.size()];
+        clasificacionIds =  new int[clasificaciones.size()];
+        int cuenta = 0;
+        for(Clasificacion clas: clasificaciones){
+            clasificacionNombres[cuenta] = clas.getNombre();
+            clasificacionIds[cuenta] = clas.getId();
+            ++cuenta;
+        }
         String[] opciones = {"10 Minutos antes", "1 Día antes", "Sin recordatorio"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, opciones);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, opciones);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, clasificacionNombres);
         recordatorio.setAdapter(adapter);
-
-
+        clasificacion.setAdapter(adapter2);
     }
 
     @Override
@@ -92,16 +104,23 @@ public class NuevoActivity extends AppCompatActivity implements View.OnClickList
         }
 
         if (v == btnGuarda) {
+            int seleccion = clasificacion.getSelectedItemPosition();
 
             if (!txtTitulo.getText().toString().equals("") && !txtDescripcion.getText().toString().equals("") && !txtFecha.getText().toString().equals("")) {
 
                 DbTareas dbTareas = new DbTareas(NuevoActivity.this);
-                long id = dbTareas.insertarTarea(txtTitulo.getText().toString(), txtDescripcion.getText().toString(), txtFecha.getText().toString(), txtHora.getText().toString());
+                long id = dbTareas.insertarTarea(
+                        txtTitulo.getText().toString(),
+                        txtDescripcion.getText().toString(),
+                        txtFecha.getText().toString(),
+                        txtHora.getText().toString(),
+                        clasificacionIds[seleccion]
+                        );
 
                 if (id > 0) {
                     Alarma();
                     Toast.makeText(NuevoActivity.this, "REGISTRO GUARDADO", Toast.LENGTH_LONG).show();
-                    limpiar();
+                    onBackPressed();
 
                 } else {
                     Toast.makeText(NuevoActivity.this, "ERROR AL GUARDAR REGISTRO", Toast.LENGTH_LONG).show();

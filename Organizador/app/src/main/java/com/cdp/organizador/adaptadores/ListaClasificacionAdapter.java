@@ -48,16 +48,6 @@ public class ListaClasificacionAdapter  extends RecyclerView.Adapter<ListaClasif
             super(itemView);
 
             viewName = itemView.findViewById(R.id.nombreClasificacion);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Context context = view.getContext();
-                    Intent intent = new Intent(context, VerActivity.class);
-                    intent.putExtra("ID", listaClasificacion.get(getAdapterPosition()).getId());
-                    context.startActivity(intent);
-                }
-            });
         }
     }
 }

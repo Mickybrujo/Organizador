@@ -7,9 +7,6 @@ public class Tareas {
     private String descripcion;
     private String fecha;
     private String hora;
-
-
-
     private Clasificacion clasificacion;
 
     public int getId() {
