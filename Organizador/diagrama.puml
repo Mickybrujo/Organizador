@@ -1,0 +1,167 @@
+@startuml
+class com.cdp.organizador.Alarma {
++ void onReceive(Context,Intent)
+}
+class com.cdp.organizador.NotificationHelper {
++ {static} String channelID
++ {static} String channelName
+- NotificationManager mManager
+- void createChannel()
++ NotificationManager getManager()
++ NotificationCompat.Builder getChannelNotification()
+}
+class com.cdp.organizador.ExampleUnitTest {
++ void addition_isCorrect()
+}
+class com.cdp.organizador.EditarActivity {
+- int a
+~ EditText txtTitulo
+~ Button btnGuarda
+~ FloatingActionButton fabEditar
+~ boolean correcto
+~ Tareas tarea
+~ int id
+~ Spinner recordatorio
+# void onCreate(Bundle)
+- void verRegistro()
+}
+class com.cdp.organizador.adaptadores.ListaClasificacionAdapter {
+~ ArrayList<Clasificacion> listaClasificacion
++ ListaClasificacionAdapter.ClasificacionViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ListaClasificacionAdapter.ClasificacionViewHolder,int)
++ int getItemCount()
+}
+class com.cdp.organizador.adaptadores.ListaClasificacionAdapter.ClasificacionViewHolder {
+~ TextView viewName
+}
+class com.cdp.organizador.VerActivity {
+~ EditText txtTitulo
+~ Button btnGuarda
+~ FloatingActionButton fabEditar
+~ Tareas tarea
+~ int id
+# void onCreate(Bundle)
+- void lista()
+}
+class com.cdp.organizador.NuevaClasificacion {
+# void onCreate(Bundle)
++ void onSaveClick(View)
+}
+class com.cdp.organizador.adaptadores.ListaTareasAdapter {
+~ ArrayList<Tareas> listaTareas
++ ContactoViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ContactoViewHolder,int)
++ int getItemCount()
+}
+class com.cdp.organizador.adaptadores.ListaTareasAdapter.ContactoViewHolder {
+~ TextView viewTitulo
+}
+class com.cdp.organizador.ListaClasificacionesActivity {
+~ RecyclerView listaClasificacion
+~ ArrayList<Tareas> listaArrayClasificacion
+# void onCreate(Bundle)
+}
+class com.cdp.organizador.MainActivity {
+~ RecyclerView listaTareas
+~ ArrayList<Tareas> listaArrayTareas
+~ Gson gson
+# void onCreate(Bundle)
++ void refreshDB()
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+- void exportar()
+- void nuevoRegistro()
+- void listaTareas()
+- void nuevaClasificacion()
+}
+class com.cdp.organizador.db.DbTareas {
+~ Context context
++ long insertarTarea(String,String,String,String,int)
++ ArrayList<Tareas> mostrarTareas()
++ Tareas verTarea(int)
++ boolean editarTarea(int,String,String,String,String)
++ boolean eliminarTarea(int)
+}
+class com.cdp.organizador.db.DbHelper {
+- {static} int DATABASE_VERSION
+- {static} String DATABASE_NOMBRE
++ {static} String TABLE_Tareas
++ {static} String TABLE_Clasificacion
++ void onCreate(SQLiteDatabase)
++ void onUpgrade(SQLiteDatabase,int,int)
+}
+class com.cdp.organizador.NuevoActivity {
+- int a
+~ EditText txtTitulo
+~ Button btnGuarda
+~ Spinner recordatorio
++ Calendar c
+~ String[] clasificacionNombres
+~ int[] clasificacionIds
+# void onCreate(Bundle)
++ void onClick(View)
++ void Alarma()
+- void startAlarm()
+- void cancelAlarm()
+- void limpiar()
+}
+class com.cdp.organizador.entidades.Tareas {
+- int id
+- String titulo
+- String descripcion
+- String fecha
+- String hora
+- Clasificacion clasificacion
++ int getId()
++ void setId(int)
++ String getTitulo()
++ void setTitulo(String)
++ String getDescripcion()
++ void setDescripcion(String)
++ String getHora()
++ void setHora(String)
++ String getFecha()
++ void setFecha(String)
++ Clasificacion getClasificacion()
++ void setClasificacion(Clasificacion)
+}
+class com.cdp.organizador.entidades.Clasificacion {
+- int id
+- String nombre
++ String getNombre()
++ void setNombre(String)
++ int getId()
++ void setId(int)
+}
+class com.cdp.organizador.db.DbClasificacion {
+~ Context context
++ long insertarClasificacion(String)
++ ArrayList<Clasificacion> mostrarClasificaciones()
++ Clasificacion verClasificacion(int)
++ boolean editarClasificacion(int,String)
++ boolean eliminarClasificacion(int)
+}
+class com.cdp.organizador.ExampleInstrumentedTest {
++ void useAppContext()
+}
+
+
+android.content.BroadcastReceiver <|-- com.cdp.organizador.Alarma
+android.content.ContextWrapper <|-- com.cdp.organizador.NotificationHelper
+androidx.appcompat.app.AppCompatActivity <|-- com.cdp.organizador.EditarActivity
+com.cdp.organizador.adaptadores.Adapter <|-- com.cdp.organizador.adaptadores.ListaClasificacionAdapter
+com.cdp.organizador.adaptadores.ListaClasificacionAdapter +.. com.cdp.organizador.adaptadores.ListaClasificacionAdapter.ClasificacionViewHolder
+com.cdp.organizador.adaptadores.ViewHolder <|-- com.cdp.organizador.adaptadores.ListaClasificacionAdapter.ClasificacionViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.cdp.organizador.VerActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.cdp.organizador.NuevaClasificacion
+com.cdp.organizador.adaptadores.Adapter <|-- com.cdp.organizador.adaptadores.ListaTareasAdapter
+com.cdp.organizador.adaptadores.ListaTareasAdapter +.. com.cdp.organizador.adaptadores.ListaTareasAdapter.ContactoViewHolder
+com.cdp.organizador.adaptadores.ViewHolder <|-- com.cdp.organizador.adaptadores.ListaTareasAdapter.ContactoViewHolder
+androidx.appcompat.app.AppCompatActivity <|-- com.cdp.organizador.ListaClasificacionesActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.cdp.organizador.MainActivity
+com.cdp.organizador.db.DbHelper <|-- com.cdp.organizador.db.DbTareas
+android.database.sqlite.SQLiteOpenHelper <|-- com.cdp.organizador.db.DbHelper
+com.cdp.organizador.OnClickListener <|.. com.cdp.organizador.NuevoActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.cdp.organizador.NuevoActivity
+com.cdp.organizador.db.DbHelper <|-- com.cdp.organizador.db.DbClasificacion
+@enduml

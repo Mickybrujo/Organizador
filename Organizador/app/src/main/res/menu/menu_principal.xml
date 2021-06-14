@@ -4,7 +4,9 @@
 
     <item
     android:id="@+id/menuNuevo"
-    android:title="Nueva Tarea" />
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_baseline_add_24"
+        android:title="Nueva Tarea" />
 
     <item
         android:id="@+id/clasificacionNueva"
@@ -12,5 +14,9 @@
 
     <item
         android:id="@+id/clasificacionLista"
-        android:title="Ver Clasificacione" />
+        android:title="Ver Clasificaciones" />
+
+    <item
+        android:id="@+id/exportarAccion"
+        android:title="Exportar Recordatorios" />
 </menu>
