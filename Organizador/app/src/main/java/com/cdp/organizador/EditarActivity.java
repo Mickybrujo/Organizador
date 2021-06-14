@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,8 @@ public class EditarActivity extends AppCompatActivity {
     boolean correcto = false;
     Tareas tarea;
     int id = 0;
+    Spinner recordatorio;
+
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -38,6 +42,12 @@ public class EditarActivity extends AppCompatActivity {
         btnFecha = findViewById(R.id.btnFecha);
         btnHora = findViewById(R.id.btnHora);
         btnGuarda = findViewById(R.id.btnGuarda);
+
+        recordatorio = findViewById(R.id.spinnerRecordatorio);
+
+        String[] opciones = {"10 Minutos antes", "1 Día antes", "Sin recordatorio"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, opciones);
+        recordatorio.setAdapter(adapter);
 
 
         fabEditar = findViewById(R.id.fabEditar);
