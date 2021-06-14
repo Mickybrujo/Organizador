@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.cdp.organizador.db.DbTareas;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class NuevoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,6 +33,9 @@ public class NuevoActivity extends AppCompatActivity implements View.OnClickList
     public Calendar c = Calendar.getInstance();
 
 
+
+    ArrayList<String> clasificacionesNombres = new ArrayList<String>();
+    ArrayList<String> IdStudent = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class NuevoActivity extends AppCompatActivity implements View.OnClickList
 
         String[] opciones = {"10 Minutos antes", "1 Día antes", "Sin recordatorio"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, opciones);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, opciones);
         recordatorio.setAdapter(adapter);
 
 
