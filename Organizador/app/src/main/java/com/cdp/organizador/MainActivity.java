@@ -28,16 +28,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         listaTareas = findViewById(R.id.listaTareas);
         listaTareas.setLayoutManager(new LinearLayoutManager(this));
-
         DbTareas dbTareas = new DbTareas(MainActivity.this);
-
         listaArrayTareas = new ArrayList<>();
-
         ListaTareasAdapter adapter = new ListaTareasAdapter(dbTareas.mostrarTareas());
         listaTareas.setAdapter(adapter);
-
-
-
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -51,7 +45,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuNuevo:
                 nuevoRegistro();
                 return true;
-
+            case R.id.clasificacionLista:
+                listaTareas();
+                return  true;
+            case  R.id.clasificacionNueva:
+                nuevaClasificacion();
+                return  true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -59,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void nuevoRegistro(){
         Intent intent = new Intent(this, NuevoActivity.class);
+        startActivity(intent);
+    }
+    private void listaTareas(){
+        Intent intent = new Intent(this, ListaClasificacionesActivity.class);
+        startActivity(intent);
+    }
+    private void nuevaClasificacion(){
+        Intent intent = new Intent(this, NuevaClasificacion.class);
         startActivity(intent);
     }
 }

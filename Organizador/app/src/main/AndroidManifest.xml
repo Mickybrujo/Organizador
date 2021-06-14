@@ -25,6 +25,7 @@
             </intent-filter>
         </activity>
 
+
         <activity
             android:name="com.cdp.organizador.VerActivity"
             android:parentActivityName="com.cdp.organizador.MainActivity">
@@ -42,7 +43,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cdp.organizador.MainActivity" />
         </activity>
+        <activity
+            android:name="com.cdp.organizador.NuevaClasificacion"
+            android:parentActivityName="com.cdp.organizador.MainActivity">
 
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cdp.organizador.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.cdp.organizador.ListaClasificacionesActivity"
+            android:parentActivityName="com.cdp.organizador.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cdp.organizador.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

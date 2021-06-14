@@ -5,8 +5,12 @@ public class Tareas {
     private int id;
     private String titulo;
     private String descripcion;
-    private  String fecha;
+    private String fecha;
     private String hora;
+
+
+
+    private Clasificacion clasificacion;
 
     public int getId() {
         return id;
@@ -46,5 +50,13 @@ public class Tareas {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public Clasificacion getClasificacion() {
+        return clasificacion;
+    }
+
+    public void setClasificacion(Clasificacion clasificacion) {
+        this.clasificacion = clasificacion;
     }
 }
