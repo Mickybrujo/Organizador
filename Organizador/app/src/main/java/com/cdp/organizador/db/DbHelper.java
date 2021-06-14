@@ -21,24 +21,31 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_Tareas + "(" +
+        sqLiteDatabase.execSQL(
+                "CREATE TABLE " + TABLE_Clasificacion + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "nombre TEXT NOT NULL" +
+                ")"
+        );
+        sqLiteDatabase.execSQL("" +
+                "CREATE TABLE " + TABLE_Tareas + "(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "titulo TEXT NOT NULL," +
                 "descripcion TEXT NOT NULL,"+
                 "fecha TEXT NOT NULL,"+
-                "hora TEXT NOT NULL)");
+                "hora TEXT NOT NULL,"+
+                "id_categoria INTEGER,"+
+                "FOREIGN KEY (id_categoria) REFERENCES "+TABLE_Clasificacion+"(id) " +
+                ")"
+        );
 
-        sqLiteDatabase.execSQL("CREATE TABLE " + TABLE_Clasificacion + "(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nombre TEXT NOT NULL" +
-                ")");
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+        sqLiteDatabase.execSQL("DROP TABLE " + TABLE_Clasificacion);
         sqLiteDatabase.execSQL("DROP TABLE " + TABLE_Tareas);
         onCreate(sqLiteDatabase);
-
     }
 }

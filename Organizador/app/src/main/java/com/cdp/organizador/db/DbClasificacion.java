@@ -39,7 +39,7 @@ public class DbClasificacion extends DbHelper {
         return id;
     }
 
-    public ArrayList<Clasificacion> mostrarClasificacions() {
+    public ArrayList<Clasificacion> mostrarClasificaciones() {
 
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -65,23 +65,20 @@ public class DbClasificacion extends DbHelper {
         return listaClasificacions;
     }
 
-    public Clasificacions verClasificacion(int id) {
+    public Clasificacion verClasificacion(int id) {
 
         DbHelper dbHelper = new DbHelper(context);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        Clasificacions Clasificacion = null;
+        Clasificacion Clasificacion = null;
         Cursor cursorClasificacions;
 
-        cursorClasificacions = db.rawQuery("SELECT * FROM " + TABLE_Clasificaciones + " WHERE id = " + id + " LIMIT 1", null);
+        cursorClasificacions = db.rawQuery("SELECT * FROM " + TABLE_Clasificacion + " WHERE id = " + id + " LIMIT 1", null);
 
         if (cursorClasificacions.moveToFirst()) {
-            Clasificacion = new Clasificacions();
+            Clasificacion = new Clasificacion();
             Clasificacion.setId(cursorClasificacions.getInt(0));
-            Clasificacion.setTitulo(cursorClasificacions.getString(1));
-            Clasificacion.setDescripcion(cursorClasificacions.getString(2));
-            Clasificacion.setFecha(cursorClasificacions.getString(3));
-            Clasificacion.setHora(cursorClasificacions.getString(4));
+
         }
 
         cursorClasificacions.close();
@@ -89,7 +86,7 @@ public class DbClasificacion extends DbHelper {
         return Clasificacion;
     }
 
-    public boolean editarClasificacion(int id, String titulo, String descripcion, String fecha, String hora) {
+    public boolean editarClasificacion(int id, String nombre) {
 
         boolean correcto = false;
 
@@ -97,7 +94,7 @@ public class DbClasificacion extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("UPDATE " + TABLE_Clasificaciones + " SET titulo = '" + titulo + "', descripcion = '" + descripcion + "', fecha = '"+ fecha +"', hora = '"+ hora +"' WHERE id='" + id + "' ");
+            db.execSQL("UPDATE " + TABLE_Clasificacion + " SET nombre = '" + nombre +"' WHERE id='" + id + "' ");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();
@@ -117,7 +114,7 @@ public class DbClasificacion extends DbHelper {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("DELETE FROM " + TABLE_Clasificaciones + " WHERE id = '" + id + "'");
+            db.execSQL("DELETE FROM " + TABLE_Clasificacion + " WHERE id = '" + id + "'");
             correcto = true;
         } catch (Exception ex) {
             ex.toString();

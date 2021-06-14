@@ -33,6 +33,7 @@ public class DbTareas extends DbHelper {
             values.put("descripcion", descripcion);
             values.put("fecha", fecha);
             values.put("hora", hora);
+            values.put("hora", hora);
 
             id = db.insert(TABLE_Tareas, null, values);
         } catch (Exception ex) {
@@ -59,6 +60,7 @@ public class DbTareas extends DbHelper {
                 tarea.setId(cursorTareas.getInt(0));
                 tarea.setTitulo(cursorTareas.getString(1));
                 tarea.setDescripcion(cursorTareas.getString(2));
+
                 listaTareas.add(tarea);
             } while (cursorTareas.moveToNext());
         }
