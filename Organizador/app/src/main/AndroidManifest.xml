@@ -43,7 +43,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cdp.organizador.MainActivity" />
         </activity>
-
         <activity
             android:name="com.cdp.organizador.NuevaClasificacion"
             android:parentActivityName="com.cdp.organizador.MainActivity">
