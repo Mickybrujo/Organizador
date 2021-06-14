@@ -87,3 +87,7 @@ lint/tmp/
 
 # Android Profiling
 *.hprof
+
+Organizador/.gradle/
+Organizador/local.properties
+Organizador/.idea/
